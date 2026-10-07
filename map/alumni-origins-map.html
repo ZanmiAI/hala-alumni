@@ -419,6 +419,17 @@
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     maxZoom: 12
   }).addTo(map);
+  // Commune boundaries (GADM level 3)
+  fetch('ht-communes.json').then(function(r){ return r.json(); }).then(function(geo){
+    L.geoJSON(geo, {
+      style: function(){ return { color: '#9aa5a1', weight: 1, opacity: 0.55, fillOpacity: 0 }; },
+      onEachFeature: function(f, layer){
+        var n = f.properties && f.properties.NAME_3 ? f.properties.NAME_3 : '';
+        if (n) layer.bindTooltip(n, { sticky: true, direction: 'top' });
+      }
+    }).addTo(map);
+  });
+
   map.on('focus', function(){ map.scrollWheelZoom.enable(); });
   map.on('blur',  function(){ map.scrollWheelZoom.disable(); });
 
