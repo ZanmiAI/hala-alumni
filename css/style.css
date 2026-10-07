@@ -150,6 +150,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 14px;
 }
 .avatar.blue { background: var(--blue); }
+img.avatar-photo { width: 64px; height: 64px; border-radius: 50%; flex: none; object-fit: cover; margin-bottom: 14px; }
 .tag {
   display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em;
   text-transform: uppercase; color: var(--palm-dark); background: #e8f1ed;
