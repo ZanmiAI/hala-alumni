@@ -295,8 +295,8 @@ ul.clean li::before { content: "›"; position: absolute; left: 8px; color: var(
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top:hover { background: var(--palm-dark); }
 
-.card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
-.card-head h3 { margin: 0; }
+.card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.card-top .tag { flex: 1; }
 .card-icon { width: 40px; height: 40px; flex: none; border-radius: 12px; background: var(--beige);
   display: flex; align-items: center; justify-content: center; color: var(--palm); }
 .card-icon svg { width: 22px; height: 22px; }
