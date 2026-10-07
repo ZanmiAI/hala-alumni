@@ -1,49 +1,19 @@
 /* HELP Alumni Association — shared stylesheet
-   Brand: Royal Palm #15A874 · Azuéi #00BAE0 · Soleil #FFEA56 · Charcoal #505050 · Ivory #F4EFE5 */
+   Brand Guidelines 2026: Poppins (primary) · Raleway Lite (headlines)
+   Royal Palm #127854 · Purple #6251A2 · Black #0A0A09 · Beige #F5EADB
+   Blue #004F82 · Red #ED1A37 · Charcoal #505050
+   Fonts loaded via Google Fonts <link> in each page <head>. */
 
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Regular.otf') format('opentype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Italic.otf') format('opentype');
-  font-weight: 400; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Medium.otf') format('opentype');
-  font-weight: 500; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-SemiBold.otf') format('opentype');
-  font-weight: 600; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Bold.otf') format('opentype');
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Ela Sans';
-  src: url('../fonts/Ela Sans Regular.ttf') format('truetype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Ela Sans';
-  src: url('../fonts/Ela Sans Bold Italic.ttf') format('truetype');
-  font-weight: 700; font-style: italic; font-display: swap;
-}
 
 :root {
-  --palm: #15A874;
-  --palm-dark: #0E7A54;
-  --azuei: #00BAE0;
-  --soleil: #FFEA56;
+  --palm: #127854;
+  --palm-dark: #0B5A3E;
+  --blue: #004F82;
+  --purple: #6251A2;
+  --red: #ED1A37;
+  --black: #0A0A09;
+  --beige: #F5EADB;
   --charcoal: #505050;
-  --ivory: #F4EFE5;
   --white: #ffffff;
   --ink: #2b2b2b;
   --muted: #6f6a5e;
@@ -56,7 +26,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   color: var(--charcoal);
   background: var(--white);
   line-height: 1.65;
@@ -64,7 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4 {
-  font-family: 'Ela Sans', 'Montserrat', sans-serif;
+  font-family: 'Raleway', 'Poppins', sans-serif;
   font-weight: 400;
   color: var(--ink);
   line-height: 1.25;
@@ -79,7 +49,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 .section { padding: 72px 0; }
-.section-ivory { background: var(--ivory); }
+.section-beige { background: var(--beige); }
 .section-palm { background: var(--palm); color: #fff; }
 .section-palm h2, .section-palm h3 { color: #fff; }
 .kicker {
@@ -87,7 +57,7 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: .14em; text-transform: uppercase; color: var(--palm-dark);
   margin-bottom: 12px;
 }
-.section-palm .kicker { color: var(--soleil); }
+.section-palm .kicker { color: var(--beige); }
 .lead { font-size: 1.12rem; max-width: 680px; }
 .center { text-align: center; }
 .center .lead { margin-left: auto; margin-right: auto; }
@@ -105,18 +75,18 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 /* Brand guidelines: logo clear space = 50% of logo height; never alter the artwork */
-.brand-logo { height: 52px; width: auto; padding: 12px 8px; display: block; }
-.site-footer .brand-logo { height: 60px; }
+.brand-logo { height: 110px; width: auto; padding: 10px 8px; display: block; }
+.site-footer .brand-logo { height: 130px; }
 .brand-mark { flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-.brand-text strong { font-family: 'Ela Sans', sans-serif; font-size: 1.35rem; color: var(--palm-dark); letter-spacing: .04em; }
+.brand-text strong { font-family: 'Raleway', sans-serif; font-size: 1.35rem; color: var(--palm-dark); letter-spacing: .04em; }
 .brand-text small { font-size: .62rem; font-weight: 600; letter-spacing: .18em; color: var(--charcoal); text-transform: uppercase; }
 .site-nav { display: flex; gap: 4px; margin-left: auto; }
 .site-nav a {
   text-decoration: none; color: var(--charcoal); font-weight: 500; font-size: .95rem;
   padding: 10px 14px; border-radius: 8px;
 }
-.site-nav a:hover { background: var(--ivory); color: var(--palm-dark); }
+.site-nav a:hover { background: var(--beige); color: var(--palm-dark); }
 .site-nav a.active { color: var(--palm-dark); font-weight: 700; }
 .header-actions { display: flex; align-items: center; gap: 16px; }
 .lang-toggle { font-size: .85rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
@@ -138,7 +108,7 @@ img { max-width: 100%; height: auto; display: block; }
 .btn-outline { border-color: #fff; color: #fff; }
 .btn-outline:hover { background: rgba(255,255,255,.14); }
 .btn-ghost { border-color: var(--palm); color: var(--palm-dark); background: #fff; }
-.btn-ghost:hover { background: var(--ivory); }
+.btn-ghost:hover { background: var(--beige); }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
 .center .btn-row { justify-content: center; }
 
@@ -176,13 +146,13 @@ img { max-width: 100%; height: auto; display: block; }
   width: 64px; height: 64px; border-radius: 50%; flex: none;
   background: var(--palm); color: #fff;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Ela Sans', sans-serif; font-size: 1.4rem;
+  font-family: 'Raleway', sans-serif; font-size: 1.4rem;
   margin-bottom: 14px;
 }
-.avatar.azuei { background: var(--azuei); }
+.avatar.blue { background: var(--blue); }
 .tag {
   display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--palm-dark); background: #e3f3ec;
+  text-transform: uppercase; color: var(--palm-dark); background: #e8f1ed;
   border-radius: 999px; padding: 4px 12px; margin-bottom: 12px;
 }
 .tag.soon { color: #8a6d00; background: #fdf3d0; }
@@ -190,7 +160,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---------- stats ---------- */
 .stats-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; }
 .stat { text-align: center; padding: 30px 18px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-.stat .num { font-family: 'Ela Sans', sans-serif; font-size: 2.6rem; color: var(--palm-dark); line-height: 1.1; }
+.stat .num { font-family: 'Raleway', sans-serif; font-size: 2.6rem; color: var(--palm-dark); line-height: 1.1; }
 .stat .lbl { font-size: .92rem; color: var(--muted); margin-top: 8px; }
 
 /* ---------- map ---------- */
@@ -214,7 +184,7 @@ img { max-width: 100%; height: auto; display: block; }
 .alumni-card .role { font-weight: 600; font-size: .9rem; color: var(--ink); }
 .alumni-card .co { font-size: .88rem; color: var(--muted); }
 .alumni-card .loc { font-size: .82rem; color: var(--muted); margin: 8px 0; }
-.alumni-card .biz { font-size: .85rem; background: #e3f3ec; border-radius: 8px; padding: 8px 12px; margin: 10px 0; }
+.alumni-card .biz { font-size: .85rem; background: #e8f1ed; border-radius: 8px; padding: 8px 12px; margin: 10px 0; }
 .alumni-card .li { font-size: .85rem; font-weight: 700; }
 .no-results { display: none; text-align: center; color: var(--muted); padding: 40px 0; }
 
@@ -228,7 +198,7 @@ img { max-width: 100%; height: auto; display: block; }
 .video-thumb svg { width: 56px; height: 56px; opacity: .9; }
 
 /* ---------- footer ---------- */
-.site-footer { background: #22312b; color: #cfd8d3; padding: 60px 0 0; margin-top: 0; }
+.site-footer { background: #0A0A09; color: #cfd8d3; padding: 60px 0 0; margin-top: 0; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; }
 .site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; }
 .site-footer a { color: #cfd8d3; text-decoration: none; }
@@ -248,7 +218,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------- misc ---------- */
 .note-soon {
-  border-left: 4px solid var(--soleil); background: #fffdf2;
+  border-left: 4px solid var(--beige); background: #fffdf2;
   padding: 18px 22px; border-radius: 0 10px 10px 0; margin: 24px 0;
   font-size: .95rem;
 }
@@ -272,6 +242,7 @@ ul.clean li::before { content: "›"; position: absolute; left: 8px; color: var(
   .site-header .header-inner { flex-wrap: wrap; }
 }
 @media (max-width: 620px) {
+  .brand-logo { height: 72px; }
   .grid-3, .alumni-grid, .stats-band, .footer-grid { grid-template-columns: 1fr; }
   .section { padding: 52px 0; }
   .hero { min-height: 66vh; }
