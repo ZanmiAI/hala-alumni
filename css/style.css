@@ -310,3 +310,4 @@ ul.clean li::before { content: "›"; position: absolute; left: 8px; color: var(
 .update-banner-text strong { font-size: 1.05rem; color: var(--ink); }
 .update-banner-text span { font-size: .92rem; color: var(--muted, #5a6b73); }
 @media (max-width: 640px) { .update-banner { flex-direction: column; text-align: center; } }
+.stat .num .pct { font-family: -apple-system, 'Segoe UI', system-ui, sans-serif; }
