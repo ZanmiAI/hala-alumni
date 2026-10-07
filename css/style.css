@@ -165,7 +165,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------- map ---------- */
 .map-wrap { margin-top: 36px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
-.map-wrap iframe { width: 100%; height: 780px; border: 0; display: block; }
+.map-wrap iframe { width: 100%; height: 990px; border: 0; display: block; }
 .map-caption { font-size: .82rem; color: var(--muted); margin-top: 10px; font-style: italic; }
 
 /* ---------- events ---------- */
