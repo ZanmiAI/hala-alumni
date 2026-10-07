@@ -296,7 +296,17 @@ ul.clean li::before { content: "›"; position: absolute; left: 8px; color: var(
 .to-top:hover { background: var(--palm-dark); }
 
 .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.card-top .tag { flex: 1; }
+.card-top .tag { flex: 1; margin-bottom: 0; }
 .card-icon { width: 40px; height: 40px; flex: none; border-radius: 12px; background: var(--beige);
   display: flex; align-items: center; justify-content: center; color: var(--palm); }
 .card-icon svg { width: 22px; height: 22px; }
+
+.update-banner { display: flex; align-items: center; gap: 18px; margin-top: 28px; padding: 22px 26px;
+  background: #fff; border-radius: 18px; box-shadow: 0 8px 28px rgba(0,79,130,.12); max-width: 720px; }
+.update-banner-icon { width: 52px; height: 52px; flex: none; border-radius: 14px; background: var(--beige);
+  display: flex; align-items: center; justify-content: center; color: var(--palm); }
+.update-banner-icon svg { width: 28px; height: 28px; }
+.update-banner-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.update-banner-text strong { font-size: 1.05rem; color: var(--ink); }
+.update-banner-text span { font-size: .92rem; color: var(--muted, #5a6b73); }
+@media (max-width: 640px) { .update-banner { flex-direction: column; text-align: center; } }
