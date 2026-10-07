@@ -8,20 +8,20 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; }
+  body { font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }
   .map-card { max-width: 900px; margin: 0 auto; border-radius: 12px; overflow: hidden;
     box-shadow: 0 4px 24px rgba(0,0,0,.12); border: 1px solid #e5e0d5; }
-  .map-head { background: #15A874; color: #fff; padding: 18px 24px; }
+  .map-head { background: #127854; color: #fff; padding: 18px 24px; }
   .map-head h2 { font-size: 20px; font-weight: 700; letter-spacing: .3px; }
   .map-head p { font-size: 13px; opacity: .92; margin-top: 4px; }
   #map { height: 520px; width: 100%; }
-  .map-foot { background: #F4EFE5; padding: 12px 24px; font-size: 12.5px; color: #505050;
+  .map-foot { background: #F5EADB; padding: 12px 24px; font-size: 12.5px; color: #505050;
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .dot-sample { width: 14px; height: 14px; border-radius: 50%; background: #15A874;
-    border: 2.5px solid #fff; box-shadow: 0 0 0 1.5px #15A874; flex: none; }
+  .dot-sample { width: 14px; height: 14px; border-radius: 50%; background: #127854;
+    border: 2.5px solid #fff; box-shadow: 0 0 0 1.5px #127854; flex: none; }
   .sample-note { margin-left: auto; font-style: italic; color: #8a8578; }
-  .leaflet-popup-content { font-family: 'Montserrat', Arial, sans-serif; font-size: 13px; }
-  .leaflet-popup-content b { color: #15A874; }
+  .leaflet-popup-content { font-family: 'Poppins', Arial, sans-serif; font-size: 13px; }
+  .leaflet-popup-content b { color: #127854; }
 </style>
 </head>
 <body>
@@ -65,7 +65,7 @@
   alumni.forEach(function(a){
     var r = 5 + Math.sqrt(a.count) * 1.6;
     L.circleMarker([a.lat, a.lng], {
-      radius: r, fillColor: '#15A874', color: '#ffffff',
+      radius: r, fillColor: '#127854', color: '#ffffff',
       weight: 2.5, opacity: 1, fillOpacity: 0.85
     }).addTo(map)
       .bindPopup('<b>' + a.commune + '</b><br>' + a.count + ' alumni');
