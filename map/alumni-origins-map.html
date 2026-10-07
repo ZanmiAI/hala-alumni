@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where HELP Alumni Come From</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; }
+  .map-card { max-width: 900px; margin: 0 auto; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.12); border: 1px solid #e5e0d5; }
+  .map-head { background: #15A874; color: #fff; padding: 18px 24px; }
+  .map-head h2 { font-size: 20px; font-weight: 700; letter-spacing: .3px; }
+  .map-head p { font-size: 13px; opacity: .92; margin-top: 4px; }
+  #map { height: 520px; width: 100%; }
+  .map-foot { background: #F4EFE5; padding: 12px 24px; font-size: 12.5px; color: #505050;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .dot-sample { width: 14px; height: 14px; border-radius: 50%; background: #15A874;
+    border: 2.5px solid #fff; box-shadow: 0 0 0 1.5px #15A874; flex: none; }
+  .sample-note { margin-left: auto; font-style: italic; color: #8a8578; }
+  .leaflet-popup-content { font-family: 'Montserrat', Arial, sans-serif; font-size: 13px; }
+  .leaflet-popup-content b { color: #15A874; }
+</style>
+</head>
+<body>
+<div class="map-card">
+  <div class="map-head">
+    <h2>Where HELP Alumni Come From</h2>
+    <p>Each dot marks a commune — bigger dot, more alumni.</p>
+  </div>
+  <div id="map"></div>
+  <div class="map-foot">
+    <span class="dot-sample"></span>
+    <span>One dot per commune &middot; dot size = number of alumni</span>
+    <span class="sample-note">Demo with sample data — replace with the real commune list.</span>
+  </div>
+</div>
+<script>
+  // ---- DATA: swap these rows for the real alumni commune counts ----
+  var alumni = [
+    { commune: "Port-au-Prince", lat: 18.547, lng: -72.339, count: 48 },
+    { commune: "Pétion-Ville",   lat: 18.513, lng: -72.287, count: 32 },
+    { commune: "Cap-Haïtien",    lat: 19.759, lng: -72.198, count: 28 },
+    { commune: "Les Cayes",      lat: 18.195, lng: -73.746, count: 18 },
+    { commune: "Jacmel",         lat: 18.238, lng: -72.534, count: 15 },
+    { commune: "Gonaïves",       lat: 19.446, lng: -72.688, count: 14 },
+    { commune: "Saint-Marc",     lat: 19.108, lng: -72.697, count: 11 },
+    { commune: "Jérémie",        lat: 18.648, lng: -73.869, count:  9 },
+    { commune: "Hinche",         lat: 19.143, lng: -72.006, count:  8 },
+    { commune: "Léogâne",        lat: 18.511, lng: -72.634, count:  7 },
+    { commune: "Fort-Liberté",   lat: 19.669, lng: -71.840, count:  6 },
+    { commune: "Mirebalais",     lat: 18.834, lng: -72.105, count:  5 }
+  ];
+
+  var map = L.map('map', { scrollWheelZoom: false }).setView([19.05, -72.35], 8);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    maxZoom: 12
+  }).addTo(map);
+  map.on('focus', function(){ map.scrollWheelZoom.enable(); });
+  map.on('blur',  function(){ map.scrollWheelZoom.disable(); });
+
+  alumni.forEach(function(a){
+    var r = 5 + Math.sqrt(a.count) * 1.6;
+    L.circleMarker([a.lat, a.lng], {
+      radius: r, fillColor: '#15A874', color: '#ffffff',
+      weight: 2.5, opacity: 1, fillOpacity: 0.85
+    }).addTo(map)
+      .bindPopup('<b>' + a.commune + '</b><br>' + a.count + ' alumni');
+  });
+</script>
+</body>
+</html>
