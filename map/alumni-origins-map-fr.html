@@ -17,11 +17,11 @@
   #map { height: 620px; width: 100%; }
   .map-foot { background: #F5EADB; padding: 12px 24px; font-size: 12.5px; color: #505050;
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .dot-sample { width: 14px; height: 14px; border-radius: 50%; background: #127854;
-    border: 2.5px solid #fff; box-shadow: 0 0 0 1.5px #127854; flex: none; }
+  .dot-sample { width: 14px; height: 14px; border-radius: 50%; background: #6251A2;
+    border: 2.5px solid #fff; box-shadow: 0 0 0 1.5px #6251A2; flex: none; }
   .sample-note { margin-left: auto; font-style: italic; color: #8a8578; }
   .leaflet-popup-content { font-family: 'Poppins', Arial, sans-serif; font-size: 13px; }
-  .leaflet-popup-content b { color: #127854; }
+  .leaflet-popup-content b { color: #6251A2; }
   .commune-label { background: transparent; border: none; box-shadow: none;
     font-size: 8px; font-weight: 600; color: #3d5a4f; font-family: 'Poppins', Arial, sans-serif;
     text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff; padding: 0; }
@@ -433,29 +433,24 @@
     }).addTo(map);
     var b = haiti.getBounds();
     map.fitBounds(b.pad(0.03));
-    map.setMaxBounds(b.pad(0.3));
+    map.setMaxBounds(b.pad(0.12));
     fetch('ht-dr-mask.json').then(function(r2){ return r2.json(); }).then(function(dr){
       L.geoJSON(dr, {
         pane: 'drmask',
-        style: function(){ return { stroke: false, fillColor: '#ffffff', fillOpacity: 1 }; }
+        style: function(){ return { stroke: false, fillColor: '#aad3df', fillOpacity: 1 }; }
       }).addTo(map);
     });
   });
 
-  // Commune boundaries + the name of every commune
+  // The name of every commune (no boundary lines)
   fetch('ht-communes.json').then(function(r){ return r.json(); }).then(function(geo){
-    L.geoJSON(geo, {
-      style: function(){ return { color: '#4e6e61', weight: 1.5, opacity: 0.8, fillOpacity: 0 }; },
-      onEachFeature: function(f, layer){
-        var n = f.properties && f.properties.NAME_3 ? f.properties.NAME_3 : '';
-        if (n) {
-          layer.bindTooltip(n, { sticky: true, direction: 'top' });
-          var c = layer.getBounds().getCenter();
-          L.tooltip({ permanent: true, direction: 'center', className: 'commune-label' })
-            .setLatLng(c).setContent(n).addTo(map);
-        }
-      }
-    }).addTo(map);
+    geo.features.forEach(function(f){
+      var n = f.properties && f.properties.NAME_3 ? f.properties.NAME_3 : '';
+      if (!n) return;
+      var c = L.geoJSON(f).getBounds().getCenter();
+      L.tooltip({ permanent: true, direction: 'center', className: 'commune-label' })
+        .setLatLng(c).setContent(n).addTo(map);
+    });
   });
 
   map.on('focus', function(){ map.scrollWheelZoom.enable(); });
@@ -464,7 +459,7 @@
   // One small dot per alumnus — every dot the same size
   alumni.forEach(function(a){
     L.circleMarker([a.lat, a.lng], {
-      radius: 4, fillColor: '#127854', color: '#ffffff',
+      radius: 4, fillColor: '#6251A2', color: '#ffffff',
       weight: 1.5, opacity: 1, fillOpacity: 0.85
     }).addTo(map)
       .bindPopup('<b>' + a.commune + '</b>');
