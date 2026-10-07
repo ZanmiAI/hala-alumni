@@ -249,3 +249,45 @@ ul.clean li::before { content: "›"; position: absolute; left: 8px; color: var(
   .hero { min-height: 66vh; }
   .map-wrap iframe { height: 560px; }
 }
+
+/* ---------- scroll reveal ---------- */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
+
+/* ---------- moments gallery ---------- */
+.moments-wrap { position: relative; margin-top: 34px; }
+.moments-track {
+  display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 6px 4px 18px; scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.moments-track img {
+  scroll-snap-align: center; flex: none; height: 300px; width: auto;
+  border-radius: 14px; object-fit: cover; box-shadow: var(--shadow);
+  transition: transform .35s ease;
+}
+.moments-track img:hover { transform: scale(1.025); }
+.moments-nav {
+  position: absolute; top: 38%; width: 46px; height: 46px; border-radius: 50%;
+  border: none; background: #fff; box-shadow: var(--shadow); cursor: pointer;
+  font-size: 1.3rem; line-height: 1; color: var(--palm-dark); z-index: 2;
+}
+.moments-nav.prev { left: -8px; } .moments-nav.next { right: -8px; }
+.moments-nav:hover { background: var(--palm); color: #fff; }
+.moments-hint { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 4px; }
+@media (max-width: 620px) {
+  .moments-track img { height: 220px; }
+  .moments-nav { display: none; }
+}
+
+/* ---------- back to top ---------- */
+.to-top {
+  position: fixed; right: 22px; bottom: 22px; width: 48px; height: 48px;
+  border-radius: 50%; border: none; background: var(--palm); color: #fff;
+  font-size: 1.4rem; cursor: pointer; box-shadow: var(--shadow); z-index: 60;
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--palm-dark); }
