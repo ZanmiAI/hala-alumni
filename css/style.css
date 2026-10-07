@@ -104,6 +104,9 @@ img { max-width: 100%; height: auto; display: block; }
   padding-top: 12px; padding-bottom: 12px;
 }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+/* Brand guidelines: logo clear space = 50% of logo height; never alter the artwork */
+.brand-logo { height: 52px; width: auto; padding: 12px 8px; display: block; }
+.site-footer .brand-logo { height: 60px; }
 .brand-mark { flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand-text strong { font-family: 'Ela Sans', sans-serif; font-size: 1.35rem; color: var(--palm-dark); letter-spacing: .04em; }
