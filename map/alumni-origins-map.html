@@ -9,12 +9,12 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }
-  .map-card { max-width: 900px; margin: 0 auto; border-radius: 12px; overflow: hidden;
+  .map-card { max-width: 1100px; margin: 0 auto; border-radius: 12px; overflow: hidden;
     box-shadow: 0 4px 24px rgba(0,0,0,.12); border: 1px solid #e5e0d5; }
   .map-head { background: #127854; color: #fff; padding: 18px 24px; }
   .map-head h2 { font-size: 20px; font-weight: 700; letter-spacing: .3px; }
   .map-head p { font-size: 13px; opacity: .92; margin-top: 4px; }
-  #map { height: 520px; width: 100%; }
+  #map { height: 620px; width: 100%; }
   .map-foot { background: #F5EADB; padding: 12px 24px; font-size: 12.5px; color: #505050;
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .dot-sample { width: 14px; height: 14px; border-radius: 50%; background: #127854;
@@ -23,7 +23,7 @@
   .leaflet-popup-content { font-family: 'Poppins', Arial, sans-serif; font-size: 13px; }
   .leaflet-popup-content b { color: #127854; }
   .commune-label { background: transparent; border: none; box-shadow: none;
-    font-size: 9px; font-weight: 600; color: #3d5a4f; font-family: 'Poppins', Arial, sans-serif;
+    font-size: 8px; font-weight: 600; color: #3d5a4f; font-family: 'Poppins', Arial, sans-serif;
     text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff; padding: 0; }
   .commune-label:before { display: none; }
 </style>
@@ -38,11 +38,10 @@
   <div class="map-foot">
     <span class="dot-sample"></span>
     <span>One dot per alumnus &middot; 372 / 410 alumni</span>
-    <span class="sample-note">372 / 410 alumni · one dot per alumnus · source: HELP alumni roster (Bazla)</span>
+    <span class="sample-note">372 / 410 alumni &middot; one dot per alumnus &middot; source: HELP alumni roster (Bazla)</span>
   </div>
 </div>
 <script>
-  // ---- DATA: swap these rows for the real alumni commune counts ----
   var alumni = [
     { commune: "Cap-Haïtien", lat: 19.7674, lng: -72.2265 },
     { commune: "Delmas", lat: 18.5365, lng: -72.3136 },
@@ -418,18 +417,43 @@
     { commune: "Port-au-Prince", lat: 18.5368, lng: -72.3274 }
   ];
 
-  var map = L.map('map', { scrollWheelZoom: false }).setView([19.05, -72.35], 8);
+  var map = L.map('map', { scrollWheelZoom: false, minZoom: 7, maxZoom: 12 });
+  map.createPane('drmask');
+  map.getPane('drmask').style.zIndex = 300;
+
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 12
   }).addTo(map);
-  // Commune boundaries (GADM level 3) — drawn clearly so each commune is visible
+
+  // Haiti boundary: frame the map on Haiti, hide the Dominican Republic
+  fetch('ht-boundary.json').then(function(r){ return r.json(); }).then(function(geo){
+    var haiti = L.geoJSON(geo, {
+      style: function(){ return { color: '#127854', weight: 2.5, opacity: 1, fillOpacity: 0 }; }
+    }).addTo(map);
+    var b = haiti.getBounds();
+    map.fitBounds(b.pad(0.03));
+    map.setMaxBounds(b.pad(0.3));
+    fetch('ht-dr-mask.json').then(function(r2){ return r2.json(); }).then(function(dr){
+      L.geoJSON(dr, {
+        pane: 'drmask',
+        style: function(){ return { stroke: false, fillColor: '#ffffff', fillOpacity: 1 }; }
+      }).addTo(map);
+    });
+  });
+
+  // Commune boundaries + the name of every commune
   fetch('ht-communes.json').then(function(r){ return r.json(); }).then(function(geo){
     L.geoJSON(geo, {
-      style: function(){ return { color: '#4e6e61', weight: 2, opacity: 0.85, fillOpacity: 0 }; },
+      style: function(){ return { color: '#4e6e61', weight: 1.5, opacity: 0.8, fillOpacity: 0 }; },
       onEachFeature: function(f, layer){
         var n = f.properties && f.properties.NAME_3 ? f.properties.NAME_3 : '';
-        if (n) layer.bindTooltip(n, { sticky: true, direction: 'top' });
+        if (n) {
+          layer.bindTooltip(n, { sticky: true, direction: 'top' });
+          var c = layer.getBounds().getCenter();
+          L.tooltip({ permanent: true, direction: 'center', className: 'commune-label' })
+            .setLatLng(c).setContent(n).addTo(map);
+        }
       }
     }).addTo(map);
   });
@@ -437,14 +461,15 @@
   map.on('focus', function(){ map.scrollWheelZoom.enable(); });
   map.on('blur',  function(){ map.scrollWheelZoom.disable(); });
 
+  // One small dot per alumnus — every dot the same size
   alumni.forEach(function(a){
-    var r = 5 + Math.sqrt(a.count) * 1.6;
     L.circleMarker([a.lat, a.lng], {
-      radius: r, fillColor: '#127854', color: '#ffffff',
-      weight: 2.5, opacity: 1, fillOpacity: 0.85
+      radius: 4, fillColor: '#127854', color: '#ffffff',
+      weight: 1.5, opacity: 1, fillOpacity: 0.85
     }).addTo(map)
-      .bindPopup('<b>' + a.commune + '</b><br>' + a.count + ' alumni');
+      .bindPopup('<b>' + a.commune + '</b>');
   });
+
 </script>
 </body>
 </html>
