@@ -75,8 +75,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 /* Brand guidelines: logo clear space = 50% of logo height; never alter the artwork */
-.brand-logo { height: 110px; width: auto; padding: 10px 8px; display: block; }
-.site-footer .brand-logo { height: 130px; }
+.brand-logo { height: 140px; width: auto; padding: 10px 8px; display: block; }
+.site-footer .brand-logo { height: 150px; }
 .brand-mark { flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand-text strong { font-family: 'Raleway', sans-serif; font-size: 1.35rem; color: var(--palm-dark); letter-spacing: .04em; }
@@ -242,7 +242,7 @@ ul.clean li::before { content: "›"; position: absolute; left: 8px; color: var(
   .site-header .header-inner { flex-wrap: wrap; }
 }
 @media (max-width: 620px) {
-  .brand-logo { height: 72px; }
+  .brand-logo { height: 84px; }
   .grid-3, .alumni-grid, .stats-band, .footer-grid { grid-template-columns: 1fr; }
   .section { padding: 52px 0; }
   .hero { min-height: 66vh; }
